@@ -5,13 +5,13 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000; // Default to 3000 for local development
 const API_URL = "https://secrets-api.appbrewery.com";
 
-const yourUsername = process.env.yourUsername; // Changed to match .env keys
-const yourPassword = process.env.yourPassword; // Changed to match .env keys
-const yourAPIKey = process.env.YOUR_API_KEY; // Changed to match .env keys
-const yourBearerToken = process.env.YOUR_BEARER_TOKEN; // Changed to match .env keys
+const yourUsername = process.env.yourUsername; // Matches .env keys
+const yourPassword = process.env.yourPassword; // Matches .env keys
+const yourAPIKey = process.env.YOUR_API_KEY; // Matches .env keys
+const yourBearerToken = process.env.YOUR_BEARER_TOKEN; // Matches .env keys
 
 app.get("/", (req, res) => {
   res.render("index.ejs", { content: "API Response." });
@@ -67,6 +67,7 @@ app.get("/bearerToken", async (req, res) => {
   }
 });
 
+// Server listening on the defined port
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
   console.log("Username:", yourUsername);
@@ -74,3 +75,6 @@ app.listen(port, () => {
   console.log("API Key:", yourAPIKey);
   console.log("Bearer Token:", yourBearerToken);
 });
+
+
+
